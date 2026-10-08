@@ -1,0 +1,27 @@
+image: maven:3.9.6-eclipse-temurin-17
+
+stages:
+  - compile
+  - test
+  -
+
+before_script:
+  - apt-get update && apt-get install -y make
+
+compile:
+  stage: compile
+  script:
+    - make compile
+test:
+  stage: test
+  script:
+    - make test
+
+package:
+  stage: package
+  script:
+    - make package
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 week
