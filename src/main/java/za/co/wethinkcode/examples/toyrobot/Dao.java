@@ -1,5 +1,6 @@
 package za.co.wethinkcode.examples.toyrobot;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
 import java.util.List;
@@ -57,11 +58,13 @@ public class Dao {
                     student.setId(newId);
                 }
 
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 return false;
             }
         }
+        System.out.println("added new Students");
         return true;
     }
 
@@ -69,7 +72,7 @@ public class Dao {
     public boolean insertCourse(Course course){
 
         try {
-            String sql = "INSERT INTO courses (name) VALUES (?)";
+            String sql = "INSERT INTO courses (course_name) VALUES (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, course.getCourseName());
@@ -91,7 +94,7 @@ public class Dao {
     public boolean insertCourses(List<Course> courses){
         for (Course course : courses)
             try {
-                String sql = "INSERT INTO courses (name) VALUES (?)";
+                String sql = "INSERT INTO courses (course_name) VALUES (?)";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
                 preparedStatement.setString(1, course.getCourseName());
@@ -107,6 +110,8 @@ public class Dao {
                 e.printStackTrace();
                 return false;
             }
+
+        System.out.println("Added new Courses");
         return true;
     }
 
@@ -150,62 +155,55 @@ public class Dao {
 
     public ResultSet getCourses(){
         try {
-            Path path = Path.of("src/main/java/resources/sql/courses.sql");
+            Path path = Path.of("./sql/courses.sql");
 
-            String sql = path.toString();
+            String sql = Files.readString(path);
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             return preparedStatement.executeQuery();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
     public ResultSet getStudents(){
         try {
-            Path path = Path.of("src/main/java/resources/sql/students.sql");
+            Path path = Path.of("./sql/students.sql");
 
-            String sql = path.toString();
+            String sql = Files.readString(path);
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             return preparedStatement.executeQuery();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
     public ResultSet getRegistration(){
         try {
-            Path path = Path.of("src/main/java/resources/sql/registrations.sql");
+            Path path = Path.of("./sql/registrations.sql");
 
-            String sql = path.toString();
+            String sql = Files.readString(path);
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             return preparedStatement.executeQuery();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
     public ResultSet registeredStudentsPlusCourseName(){
         try {
-            Path path = Path.of("src/main/java/resources/sql/registered_students_and_courses.sql");
+            Path path = Path.of("./sql/registered_students_and_courses.sql");
 
-            String sql = path.toString();
+            String sql = Files.readString(path);
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             return preparedStatement.executeQuery();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
-
-
-
-
-
-
-
 
 }

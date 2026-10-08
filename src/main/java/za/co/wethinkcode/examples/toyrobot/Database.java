@@ -14,6 +14,9 @@ public class Database {
         this.Dbconnect();
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
 
     private void Dbconnect(){
 
