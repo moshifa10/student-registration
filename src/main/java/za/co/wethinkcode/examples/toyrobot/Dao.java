@@ -1,5 +1,6 @@
 package za.co.wethinkcode.examples.toyrobot;
 
+import java.nio.file.Path;
 import java.sql.*;
 import java.util.List;
 
@@ -145,6 +146,62 @@ public class Dao {
         }
         return true;
     }
+
+    public ResultSet getCourses(){
+        try {
+            Path path = Path.of("src/main/java/resources/sql/courses.sql");
+
+            String sql = path.toString();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public ResultSet getStudents(){
+        try {
+            Path path = Path.of("src/main/java/resources/sql/students.sql");
+
+            String sql = path.toString();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public ResultSet getRegistration(){
+        try {
+            Path path = Path.of("src/main/java/resources/sql/registrations.sql");
+
+            String sql = path.toString();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public ResultSet registeredStudentsPlusCourseName(){
+        try {
+            Path path = Path.of("src/main/java/resources/sql/registered_students_and_courses.sql");
+
+            String sql = path.toString();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            return preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+
 
 
 
