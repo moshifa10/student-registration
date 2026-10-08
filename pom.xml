@@ -21,6 +21,14 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.53.4.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.javalin</groupId>
+            <artifactId>javalin-bundle</artifactId>
+            <version>6.7.0</version>
+        </dependency>
     </dependencies>
+
+
 
 </project>
