@@ -2,12 +2,12 @@ package za.co.wethinkcode.examples.toyrobot;
 
 import java.util.List;
 
-public class InsertStudents {
+public class SaveStudentsCourses {
 
     private List<Student> students;
     private  List<Course> courses;
 
-    public InsertStudents(List<Student> students, List<Course> courses){
+    public SaveStudentsCourses(List<Student> students, List<Course> courses){
 
         this.students = students;
         this.courses = courses;
