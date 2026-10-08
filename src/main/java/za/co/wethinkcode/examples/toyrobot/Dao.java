@@ -12,6 +12,7 @@ public class Dao {
         this.connection = connection;
     }
 
+
     public boolean insertStudent(Student student){
 
         try {
